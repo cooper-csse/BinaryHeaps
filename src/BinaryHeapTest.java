@@ -18,15 +18,6 @@ public class BinaryHeapTest {
 	 */
 	@Test
 	public void testSimple() {
-		// TODO: Implement the BinaryHeap class according to the spec.
-
-		/*
-		 * CONSIDER: Since we're implementing the heap's internal storage
-		 * using a primitive array (and not an ArrayList), like we did on
-		 * GrowableCircularArrayQueue from the StacksAndQueues assignment,
-		 * we need to pass in to the constructor a parameter that tells what
-		 * class it is.
-		 */
 		BinaryHeap<Integer> heap = new BinaryHeap<Integer>(Integer.class);
 		
 		// deleteMin returns null if it has no elements.
@@ -43,10 +34,15 @@ public class BinaryHeapTest {
 				Arrays.toString(csLegends));
 	}
 
-	// TODO: Add unit tests for each method until you are satisfied your code is
-	// correct. I will test your code with more complex tests. Since this
-	// assignment is short, I'd like you to give the tests some thought, rather
-	// than just always relying on someone else's tests. Professional developers
-	// usually write their own unit tests.
+	@Test
+	public void testInsert() {
+		BinaryHeap<Integer> heap = new BinaryHeap<>(Integer.class);
+		Integer[] array = {0, 3, 1, 8, 4, 2, 12, 15, 9, 7, 5, 11, 19, 20, 13, 24, 18, 21, 10, 22, 16, 17, 6, 23, 14};
 
+		// Add items to heap in reverse order
+		for (int i = 0; i < 25; i++) heap.insert(24 - i);
+
+		// Look at items in array to check if they are in order
+		for (int i = 0; i < 25; i++) assertEquals("at index " + i, array[i], heap.array[i + 1]);
+	}
 }
