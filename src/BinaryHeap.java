@@ -40,11 +40,42 @@ public class BinaryHeap<T extends Comparable<? super T>> {
 	}
 
 	public T deleteMin() {
-		return null;
+		if (this.size == 0) return null;
+		T item = this.array[1];
+		int index = 1;
+		T last = this.array[this.size];
+		this.array[index] = last;
+		this.array[this.size] = null;
+		while (index <= (this.size-1) / 2) {
+			T left = this.array[index * 2];
+			T right = this.array[index * 2 + 1];
+			if (right == null) {
+				if (last.compareTo(left) > 0) {
+					this.array[index] = left;
+					this.array[index * 2] = last;
+					this.swapCount ++;
+				}
+				break;
+			}
+			if (last.compareTo(left) < 0 && last.compareTo(right) < 0) break;
+			else if (left.compareTo(right) < 0) {
+				this.array[index] = left;
+				this.array[index * 2] = last;
+				this.swapCount ++;
+				index *= 2;
+			} else {
+				this.array[index] = right;
+				this.array[index * 2 + 1] = last;
+				this.swapCount ++;
+				index = index * 2 + 1;
+			}
+		}
+		this.size--;
+		return item;
 	}
 
 	public String toString() {
-		String output = "null, ";
+		String output = "null" + (this.size != 0 ? ", " : "");
 		for (int i = 0; i < this.size; i++) output += this.array[i + 1] + (i + 1 != this.size ? ", " : "");
 		return "[" + output + "]";
 	}
