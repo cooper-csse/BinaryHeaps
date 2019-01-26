@@ -92,4 +92,12 @@ public class BinaryHeapTest {
 			assertNotNull(this.heap2.array[i + 1]);
 		}
 	}
+
+	@Test
+	public void testCheckInOrder() {
+		for (int i = 1; i < 13; i++) {
+			assertTrue("at index " + i + " in heap1", this.heap1.array[i] < Math.min(this.heap1.array[i * 2], this.heap1.array[i * 2 + 1]));
+			assertTrue("at index " + i + " in heap2", this.heap2.array[i] < Math.min(this.heap2.array[i * 2], this.heap2.array[i * 2 + 1]));
+		}
+	}
 }
