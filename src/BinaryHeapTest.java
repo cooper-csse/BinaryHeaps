@@ -62,3 +62,12 @@ public class BinaryHeapTest {
 		assertEquals(0, this.heap1.swapCount);
 		assertEquals(74, this.heap2.swapCount);
 	}
+
+	@Test
+	public void testEmptySlots() {
+		for (int i = 0; i < 25; i++) {
+			assertNotNull(this.heap1.array[i + 1]);
+			assertNotNull(this.heap2.array[i + 1]);
+		}
+	}
+}
