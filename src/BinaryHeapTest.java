@@ -93,6 +93,9 @@ public class BinaryHeapTest {
 		}
 	}
 
+	/**
+	 * Make sure all parents are less than their children
+	 */
 	@Test
 	public void testCheckInOrder() {
 		for (int i = 1; i < 13; i++) {
