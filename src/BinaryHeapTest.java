@@ -50,4 +50,9 @@ public class BinaryHeapTest {
 		// Look at items in heap2's (reversed inserts) array to check if they are in order
 		for (int i = 0; i < 25; i++) assertEquals("at index " + i, array[i], this.heap2.array[i + 1]);
 	}
-}
+
+	@Test
+	public void testResizeCount() {
+		assertEquals(2, this.heap1.resizeCount);
+		assertEquals(2, this.heap2.resizeCount);
+	}
