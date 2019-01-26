@@ -42,6 +42,10 @@ public class BinaryHeapTest {
 				Arrays.toString(csLegends));
 	}
 
+
+	/**
+	 * Test to see if .insert() is adding new items into the correct locations
+	 */
 	@Test
 	public void testInsert() {
 		BinaryHeap<Integer> heap = new BinaryHeap<>(Integer.class);
@@ -51,18 +55,27 @@ public class BinaryHeapTest {
 		for (int i = 0; i < 25; i++) assertEquals("at index " + i, array[i], this.heap2.array[i + 1]);
 	}
 
+	/**
+	 * Test to see how many times the array must resize to accommodate for new items
+	 */
 	@Test
 	public void testResizeCount() {
 		assertEquals(2, this.heap1.resizeCount);
 		assertEquals(2, this.heap2.resizeCount);
 	}
 
+	/**
+	 * Test to see how many times items swap around in the array
+	 */
 	@Test
 	public void testSwapCount() {
 		assertEquals(0, this.heap1.swapCount);
 		assertEquals(74, this.heap2.swapCount);
 	}
 
+	/**
+	 * Test to see if there are any discontinuities in the array
+	 */
 	@Test
 	public void testEmptySlots() {
 		for (int i = 0; i < 25; i++) {
