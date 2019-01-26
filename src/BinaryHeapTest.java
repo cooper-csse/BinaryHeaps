@@ -56,6 +56,15 @@ public class BinaryHeapTest {
 	}
 
 	/**
+	 * Test to see if the size variable is updating correctly after each insert
+	 */
+	@Test
+	public void testSizeAfterInsert() {
+		assertEquals(25, this.heap1.size);
+		assertEquals(25, this.heap2.size);
+	}
+
+	/**
 	 * Test to see how many times the array must resize to accommodate for new items
 	 */
 	@Test
