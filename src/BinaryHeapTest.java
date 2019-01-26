@@ -1,9 +1,9 @@
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
-
 import java.util.Arrays;
 
+import org.junit.Before;
 import org.junit.Test;
+
+import static org.junit.Assert.*;
 
 /**
  * Tests binary heaps.
@@ -11,6 +11,14 @@ import org.junit.Test;
  * @author Matt Boutell. Created May 7, 2013.
  */
 public class BinaryHeapTest {
+	BinaryHeap<Integer> heap1 = new BinaryHeap<>(Integer.class);
+	BinaryHeap<Integer> heap2 = new BinaryHeap<>(Integer.class);
+
+	@Before
+	public void setupHeaps() {
+		for (int i = 0; i < 25; i++) this.heap1.insert(i); // Add items to heap1 in order
+		for (int i = 0; i < 25; i++) this.heap2.insert(24 - i); // Add items to heap2 in reverse order
+	}
 
 	/**
 	 * Simple test method for insert, delete, toString, and sort. Enforces the
@@ -39,10 +47,7 @@ public class BinaryHeapTest {
 		BinaryHeap<Integer> heap = new BinaryHeap<>(Integer.class);
 		Integer[] array = {0, 3, 1, 8, 4, 2, 12, 15, 9, 7, 5, 11, 19, 20, 13, 24, 18, 21, 10, 22, 16, 17, 6, 23, 14};
 
-		// Add items to heap in reverse order
-		for (int i = 0; i < 25; i++) heap.insert(24 - i);
-
-		// Look at items in array to check if they are in order
-		for (int i = 0; i < 25; i++) assertEquals("at index " + i, array[i], heap.array[i + 1]);
+		// Look at items in heap2's (reversed inserts) array to check if they are in order
+		for (int i = 0; i < 25; i++) assertEquals("at index " + i, array[i], this.heap2.array[i + 1]);
 	}
 }
