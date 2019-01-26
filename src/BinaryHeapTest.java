@@ -56,3 +56,9 @@ public class BinaryHeapTest {
 		assertEquals(2, this.heap1.resizeCount);
 		assertEquals(2, this.heap2.resizeCount);
 	}
+
+	@Test
+	public void testSwapCount() {
+		assertEquals(0, this.heap1.swapCount);
+		assertEquals(74, this.heap2.swapCount);
+	}
