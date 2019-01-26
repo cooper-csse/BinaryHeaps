@@ -25,7 +25,9 @@ public class BinaryHeap<T extends Comparable<? super T>> {
 	}
 
 	public String toString() {
-		return "";
+		String output = "null, ";
+		for (int i = 0; i < this.size; i++) output += this.array[i + 1] + (i + 1 != this.size ? ", " : "");
+		return "[" + output + "]";
 	}
 
 	public static void sort(Comparable[] array, Class<?> classType) {
