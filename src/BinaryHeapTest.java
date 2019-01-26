@@ -141,4 +141,19 @@ public class BinaryHeapTest {
 			assertEquals(81 + i * 7, heap2.swapCount);
 		}
 	}
+
+	/**
+	 * Make sure all parents are less than their children after deleting several times
+	 */
+	@Test
+	public void testCheckInOrderAfterDelete() {
+		for (int i = 0; i < 10; i++) {
+			assertEquals(i, (int) this.heap1.deleteMin());
+			assertEquals(i, (int) this.heap2.deleteMin());
+		}
+		for (int i = 1; i <= heap1.size / 2; i++) {
+			assertTrue("after delete at index " + i + " in heap1", this.heap1.array[i] < Math.min(this.heap1.array[i * 2], this.heap1.array[i * 2 + 1]));
+			assertTrue("after delete at index " + i + " in heap2", this.heap2.array[i] < Math.min(this.heap2.array[i * 2], this.heap2.array[i * 2 + 1]));
+		}
+	}
 }
