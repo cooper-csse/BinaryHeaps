@@ -103,4 +103,29 @@ public class BinaryHeapTest {
 			assertTrue("at index " + i + " in heap2", this.heap2.array[i] < Math.min(this.heap2.array[i * 2], this.heap2.array[i * 2 + 1]));
 		}
 	}
+
+	/**
+	 * Test to see if the .deleteMin() method correctly removes the first item and sorts the array.
+	 */
+	@Test
+	public void testDelete() {
+		for (int i = 0; i < 25; i++) {
+			assertEquals(i, (int) heap1.deleteMin());
+		}
+		BinaryHeap<Integer> heap = new BinaryHeap<>(Integer.class);
+		PriorityQueue<Integer> queue = new PriorityQueue<>(heap.capacity);
+
+		assertNull("deleteMin on empty heap", heap.deleteMin());
+
+		for (int i = 0; i < 25; i++) {
+			int num = (int) Math.floor(Math.random() * 100);
+			heap.insert(num);
+			queue.add(num);
+		}
+
+		for (int i = 0; i < 24; i++) {
+			assertNotNull("at iteration " + i, heap.array[1]);
+			assertEquals("at index " + i, queue.remove(), heap.deleteMin());
+		}
+	}
 }
