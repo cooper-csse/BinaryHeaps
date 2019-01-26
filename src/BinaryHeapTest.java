@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.PriorityQueue;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -126,6 +127,18 @@ public class BinaryHeapTest {
 		for (int i = 0; i < 24; i++) {
 			assertNotNull("at iteration " + i, heap.array[1]);
 			assertEquals("at index " + i, queue.remove(), heap.deleteMin());
+		}
+	}
+
+	/**
+	 * Check if repeatedly inserting and deleting updates the swapCount to the correct value
+	 */
+	@Test
+	public void testRepeatedInsertAndDelete() {
+		for (int i = 0; i < 25; i++) {
+			assertEquals(0, (int) heap2.deleteMin());
+			heap2.insert(0);
+			assertEquals(81 + i * 7, heap2.swapCount);
 		}
 	}
 }
