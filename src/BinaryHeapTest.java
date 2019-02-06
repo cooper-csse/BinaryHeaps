@@ -12,8 +12,8 @@ import static org.junit.Assert.*;
  * @author Matt Boutell. Created May 7, 2013.
  */
 public class BinaryHeapTest {
-	BinaryHeap<Integer> heap1 = new BinaryHeap<>(Integer.class);
-	BinaryHeap<Integer> heap2 = new BinaryHeap<>(Integer.class);
+	private BinaryHeap<Integer> heap1 = new BinaryHeap<>(Integer.class);
+	private BinaryHeap<Integer> heap2 = new BinaryHeap<>(Integer.class);
 
 	@Before
 	public void setupHeaps() {
@@ -27,7 +27,7 @@ public class BinaryHeapTest {
 	 */
 	@Test
 	public void testSimple() {
-		BinaryHeap<Integer> heap = new BinaryHeap<Integer>(Integer.class);
+		BinaryHeap<Integer> heap = new BinaryHeap<>(Integer.class);
 		
 		// deleteMin returns null if it has no elements.
 		assertNull(heap.deleteMin());
