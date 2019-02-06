@@ -49,7 +49,6 @@ public class BinaryHeapTest {
 	 */
 	@Test
 	public void testInsert() {
-		BinaryHeap<Integer> heap = new BinaryHeap<>(Integer.class);
 		Integer[] array = {0, 3, 1, 8, 4, 2, 12, 15, 9, 7, 5, 11, 19, 20, 13, 24, 18, 21, 10, 22, 16, 17, 6, 23, 14};
 
 		// Look at items in heap2's (reversed inserts) array to check if they are in order
@@ -154,6 +153,45 @@ public class BinaryHeapTest {
 		for (int i = 1; i <= heap1.size / 2; i++) {
 			assertTrue("after delete at index " + i + " in heap1", this.heap1.array[i] < Math.min(this.heap1.array[i * 2], this.heap1.array[i * 2 + 1]));
 			assertTrue("after delete at index " + i + " in heap2", this.heap2.array[i] < Math.min(this.heap2.array[i * 2], this.heap2.array[i * 2 + 1]));
+		}
+	}
+
+	/**
+	 * Check if the sort method accurately sorts any Comparable[]
+	 */
+	@Test
+	public void testHeapSort() {
+		Integer[] numbers = {5, 2, 7, 6, 1, 8, 3, 9, 4, 0};
+		String[] letters = {"q", "w", "e", "r", "t", "y", "u", "i", "o", "p"};
+		BinaryHeap.sort(numbers);
+		assertEquals("[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]", Arrays.toString(numbers));
+		BinaryHeap.sort(letters);
+		assertEquals("[e, i, o, p, q, r, t, u, w, y]", Arrays.toString(letters));
+
+		// Run a shuffle and test order 100 times
+		Integer[] numbersBig = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15};
+		for (int i = 0; i < 100; i++) {
+			shuffleArray(numbersBig);
+			BinaryHeap.sort(numbersBig);
+			assertTrue(isSorted(numbersBig));
+		}
+	}
+
+	private static boolean isSorted(Comparable[] array) {
+		Comparable last = array[0];
+		for (Comparable item : array) { if (item.compareTo(last) < 0) return false; last = item; }
+		return true;
+	}
+
+	private static void shuffleArray(Integer[] array) {
+		java.util.Random random = new java.util.Random();
+		for (int i = array.length - 1; i > 0; i--) {
+			int index = random.nextInt(i + 1);
+			if (index != i) {
+				array[index] ^= array[i];
+				array[i] ^= array[index];
+				array[index] ^= array[i];
+			}
 		}
 	}
 }
