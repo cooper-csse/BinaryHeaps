@@ -80,7 +80,40 @@ public class BinaryHeap<T extends Comparable<? super T>> {
 		return "[" + output + "]";
 	}
 
-	public static void sort(Comparable[] array, Class<?> classType) {
+	public static void sort(Comparable[] array) {
+		int size = array.length;
+		for (int index = size / 2 - 1; index >= 0; index--) BinaryHeap.percolateDown(array, index, size);
+		for (int position = size - 1; position >= 0; position--) {
+			Comparable swap = array[position];
+			array[position] = array[0]; array[0] = swap;
+			BinaryHeap.percolateDown(array, 0, --size);
+		}
+	}
 
+	private static void percolateDown(Comparable[] array, int index, int size) {
+		while (index <= size / 2 - 1) {
+			Comparable item = array[index];
+			Comparable left = 2 * (index + 1) - 1 < size ? array[2 * (index + 1) - 1] : null;
+			Comparable right = 2 * (index + 1) < size ? array[2 * (index + 1)] : null;
+			if (right == null) {
+				if (item.compareTo(left) < 0) {
+					array[index] = left;
+					array[2 * (index + 1) - 1] = item;
+				} break;
+			} else if (item.compareTo(left) > 0 && item.compareTo(right) > 0) break;
+			else if (left.compareTo(right) > 0) {
+				array[index] = left;
+				array[2 * (index + 1) - 1] = item;
+				index = 2 * (index + 1) - 1;
+			} else {
+				array[index] = right;
+				array[2 * (index + 1)] = item;
+				index = 2 * (index + 1);
+			}
+		}
+	}
+
+	public static void sort(Comparable[] array, Class<?> classType) {
+		BinaryHeap.sort(array);
 	}
 }
